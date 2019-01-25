@@ -26,7 +26,13 @@ build:
     - internal/docker-run:
         image: docker.io/$USERNAME/docker-build-golang
         name: myTestContainer2
-    - script:
+    - internal/docker-push: 
+        image-name: myTestContainer2
+        username: $USERNAME # Docker Hub username. When using CLI, set using "export X_USERNAME=<username>"  
+        password: $PASSWORD # Docker Hub password. When using CLI, set using "export X_PASSWORD=<password>" 
+        repository: docker.io/$USERNAME/docker-build-ubuntu1
+        tag: latest  
+- script:
         name: test ping
         code: ping -c 4 myTestContainer2
     - script:
