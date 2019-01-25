@@ -32,7 +32,7 @@ build:
         password: $PASSWORD # Docker Hub password. When using CLI, set using "export X_PASSWORD=<password>" 
         repository: docker.io/$USERNAME/docker-build-ubuntu1
         tag: latest  
-- script:
+    - script:
         name: test ping
         code: ping -c 4 myTestContainer2
     - script:
