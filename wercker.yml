@@ -8,33 +8,10 @@ build:
         labels: "Label1=value1 'Three word key'=value2 Label3='Three word value'"
         extrahosts: "somehost:192.168.0.1 anotherhost:192.168.0.2"
         nocache: false # ensures RUN steps in Dockerfile are always run
-    - internal/docker-run:
-        image: my-new-image
-        name: myTestContainer
-    - script:
-        name: test ping
-        code: ping -c 4 myTestContainer
-    - script:
-        name: test http
-        code: curl http://myTestContainer:5000 
     - internal/docker-push: 
         image-name: my-new-image
         username: $USERNAME # Docker Hub username. When using CLI, set using "export X_USERNAME=<username>"  
         password: $PASSWORD # Docker Hub password. When using CLI, set using "export X_PASSWORD=<password>" 
         repository: docker.io/$USERNAME/docker-build-ubuntu
         tag: latest    
-    - internal/docker-run:
-        image: docker.io/$USERNAME/docker-build-golang
-        name: myTestContainer2
-    - internal/docker-push: 
-        image-name: myTestContainer2
-        username: $USERNAME # Docker Hub username. When using CLI, set using "export X_USERNAME=<username>"  
-        password: $PASSWORD # Docker Hub password. When using CLI, set using "export X_PASSWORD=<password>" 
-        repository: docker.io/$USERNAME/docker-build-ubuntu1
-        tag: latest  
-    - script:
-        name: test ping
-        code: ping -c 4 myTestContainer2
-    - script:
-        name: test http
-        code: curl http://myTestContainer2:5000 
+
