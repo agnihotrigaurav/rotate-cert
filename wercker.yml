@@ -12,6 +12,6 @@ build:
         image-name: my-new-image
         username: $USERNAME # Docker Hub username. When using CLI, set using "export X_USERNAME=<username>"  
         password: $PASSWORD # Docker Hub password. When using CLI, set using "export X_PASSWORD=<password>" 
-        repository: fra.ocir.io/odx-pipelines/test/docker-build-ubuntu 
+        repository: zrh.ocir.io/odx-pipelines/test/docker-build-ubuntu 
         tag: latest    
 
