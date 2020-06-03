@@ -3,6 +3,6 @@ build:
   steps:
     - script:
         name: test ping
-        code: ping -c 4 myTestContainer2
+        code: echo $WERCKER_ENV
  
 
