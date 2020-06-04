@@ -11,6 +11,6 @@ build:
     - script:
         name: Run a docker container
         code: | 
-          docker login -u $USERNAME -p $PASSWORD
+          docker login $DOCKER_RGISTRY -u $USERNAME -p $PASSWORD
           docker run --rm  -p 8888:80 --name static-site --network=$DOCKER_NETWORK_NAME $DOCKER_RGISTRY/$DOCKER_IMAGE
 
