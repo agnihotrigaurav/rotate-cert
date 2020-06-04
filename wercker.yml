@@ -1,15 +1,16 @@
 build:
-  box: golang
+  box: alpine
+  docker: true
   steps:
-    - internal/docker-run:
-      image: $DOCKER_IMAGE
-      name: rotate_certification
-      username: $USERNAME
-      password: $PASSWORD
-      registry: $DOCKER_RGISTRY
-      env: "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY  AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION KUBE_CONFIG_STAGING=$KUBE_CONFIG_STAGING KUBE_CONFIG_PROD=$KUBE_CONFIG_PROD WERCKER_ENV=$WERCKER_ENV " 
-
-        
-
- 
+    - script:
+        name: Install docker
+        code: apk --no-cache add docker
+    - script:
+        name: Install Curl
+        code: apk --no-cache add curl
+    - script:
+        name: Run a docker container
+        code: | 
+          docker login -u $USERNAME -p $PASSWORD
+          docker run --rm  -p 8888:80 --name static-site --network=$DOCKER_NETWORK_NAME $DOCKER_RGISTRY/$DOCKER_IMAGE
 
