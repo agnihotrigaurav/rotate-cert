@@ -6,9 +6,6 @@ build:
         name: Install docker
         code: apk --no-cache add docker
     - script:
-        name: Install Curl
-        code: apk --no-cache add curl
-    - script:
         name: Run a docker container
         code: | 
           docker login $DOCKER_RGISTRY -u $USERNAME -p $PASSWORD
